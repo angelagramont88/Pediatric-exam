@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediatric Nursing Final Exam - 80 Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: #4CAF50;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .question-container {
+            padding: 40px;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .question-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .category-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .category-cardio {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .category-gi {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .category-renal {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .question-type {
+            background: #fff3e0;
+            color: #e65100;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-weight: 600;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: #f8f9fa;
+            margin-bottom: 12px;
+            padding: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .option input[type="checkbox"],
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option.correct-answer {
+            border-color: #4CAF50;
+            background: #c8e6c9;
+        }
+        
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 14px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .rationale {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .rationale h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        .rationale-text {
+            line-height: 1.7;
+            color: #495057;
+        }
+        
+        .results {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+        
+        .score-fair {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        }
+        
+        .score-label {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .results h2 {
+            font-size: 32px;
+            margin: 30px 0;
+            color: #333;
+        }
+        
+        .breakdown {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .missed-questions {
+            margin-top: 30px;
+        }
+        
+        .missed-item {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #f44336;
+        }
+        
+        @media (max-width: 768px) {
+            .question-container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pediatric Nursing Final Exam</h1>
+            <p>Cardiovascular, GI & Renal Disorders</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+        
+        <div class="question-container" id="quizContainer">
+            <!-- Quiz content will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // CARDIOVASCULAR QUESTIONS (1-27)
+            {
+                id: 1,
+                category: "cardio",
+                type: "multiple",
+                question: "A newborn infant is diagnosed with Patent Ductus Arteriosus (PDA). Which medication should the nurse anticipate administering to close the PDA?",
+                options: [
+                    "Digoxin",
+                    "Indomethacin",
+                    "Furosemide",
+                    "Prostaglandin E1"
+                ],
+                correct: [1],
+                rationale: "Indomethacin or ibuprofen are used to help close a PDA by inhibiting prostaglandin synthesis, which promotes closure of the ductus arteriosus. These medications work like 'glue' to seal the opening. Digoxin is used for heart failure, furosemide is a diuretic, and prostaglandin E1 actually KEEPS the ductus open (opposite effect)."
+            },
+            {
+                id: 2,
+                category: "cardio",
+                type: "multiple",
+                question: "A nurse is caring for an infant with Tetralogy of Fallot who is experiencing a 'Tet spell.' What is the PRIORITY nursing intervention?",
+                options: [
+                    "Start oxygen immediately",
+                    "Place the infant in knee-chest position",
+                    "Administer IV fluids",
+                    "Call the healthcare provider"
+                ],
+                correct: [1],
+                rationale: "During a Tet spell (hypercyanotic episode), placing the infant in knee-chest position is the PRIORITY because it increases systemic vascular resistance and decreases right-to-left shunting, improving oxygenation. While oxygen and other interventions are important, positioning comes first. The infant may naturally squat or pull knees to chest - this is a normal compensatory mechanism and should NOT be prevented."
+            },
+            {
+                id: 3,
+                category: "cardio",
+                type: "select-all",
+                question: "Which of the following are components of Tetralogy of Fallot? (Select all that apply)",
+                options: [
+                    "Ventricular septal defect (VSD)",
+                    "Pulmonary stenosis",
+                    "Overriding aorta",
+                    "Right ventricular hypertrophy",
+                    "Atrial septal defect (ASD)"
+                ],
+                correct: [0, 1, 2, 3],
+                rationale: "Tetralogy of Fallot has FOUR defects (tetra = 4): VSD, pulmonary stenosis, overriding aorta, and right ventricular hypertrophy. ASD is NOT part of Tetralogy of Fallot. Remember the four components that make this a 'decreased pulmonary blood flow' disorder that results in cyanosis."
+            },
+            {
+                id: 4,
+                category: "cardio",
+                type: "multiple",
+                question: "A nurse is preparing to administer digoxin to a 6-month-old infant. The apical pulse is 85 bpm. What should the nurse do?",
+                options: [
+                    "Administer the medication as ordered",
+                    "Hold the medication and notify the provider",
+                    "Give half the ordered dose",
+                    "Recheck the pulse in 30 minutes"
+                ],
+                correct: [1],
+                rationale: "The medication should be held and the provider notified. Digoxin should be withheld if the heart rate is less than 110 bpm in infants. The threshold is <90 bpm for young children and <70 bpm for older children. A heart rate of 85 bpm in an infant is below the safety threshold and could indicate digoxin toxicity."
+            },
+            {
+                id: 5,
+                category: "cardio",
+                type: "select-all",
+                question: "A child with congestive heart failure is being monitored. Which findings would the nurse expect? (Select all that apply)",
+                options: [
+                    "Edema of face, hands, and feet",
+                    "Weight loss",
+                    "Tachycardia",
+                    "Decreased urine output",
+                    "Bradycardia"
+                ],
+                correct: [0, 2, 3],
+                rationale: "In CHF, expect edema (fluid retention), tachycardia (compensatory mechanism), and decreased urine output (kidneys not getting enough blood). Weight GAIN occurs (not loss) due to fluid retention - this is why DAILY WEIGHTS are a priority. Bradycardia is not expected; tachycardia occurs as the heart tries to compensate for poor pumping."
+            },
+            {
+                id: 6,
+                category: "cardio",
+                type: "multiple",
+                question: "Which congenital heart defect would require administration of Prostaglandin E1 to maintain patency of the ductus arteriosus?",
+                options: [
+                    "Ventricular septal defect (VSD)",
+                    "Atrial septal defect (ASD)",
+                    "Tricuspid atresia",
+                    "Patent ductus arteriosus (PDA)"
+                ],
+                correct: [2],
+                rationale: "Tricuspid atresia requires prostaglandin E1 to keep the ductus arteriosus OPEN because the tricuspid valve is completely closed - without the PDA or PFO, blood cannot flow properly and the baby will die. Prostaglandin E1 is used for 'ductal-dependent' lesions. VSD and ASD have holes but don't need the ductus. PDA is when we want to CLOSE the ductus, not keep it open."
+            },
+            {
+                id: 7,
+                category: "cardio",
+                type: "multiple",
+                question: "A child is admitted with suspected coarctation of the aorta. Which assessment finding would the nurse expect?",
+                options: [
+                    "Bounding pulses in lower extremities",
+                    "Higher blood pressure in legs than arms",
+                    "Weak pulses in lower extremities",
+                    "Cyanosis of the upper body"
+                ],
+                correct: [2],
+                rationale: "Coarctation of the aorta is a narrowing (like stepping on a garden hose) that causes HIGH blood pressure in the arms and LOW blood pressure in the legs, with weak or absent pulses in the lower extremities. Think of it as a blockage - everything before the blockage has high pressure, everything after has low pressure. This defect is associated with Turner syndrome."
+            },
+            {
+                id: 8,
+                category: "cardio",
+                type: "select-all",
+                question: "Which medications might be used in the management of congestive heart failure in children? (Select all that apply)",
+                options: [
+                    "Digoxin",
+                    "Furosemide (Lasix)",
+                    "Prostaglandin E1",
+                    "ACE inhibitors",
+                    "Indomethacin"
+                ],
+                correct: [0, 1, 3],
+                rationale: "Digoxin improves contractility, furosemide is a diuretic that removes excess fluid, and ACE inhibitors reduce afterload. Prostaglandin E1 keeps the ductus open (not for CHF), and indomethacin closes the ductus (not for CHF). The goal in CHF is to strengthen the heart, remove excess fluid, and reduce the heart's workload."
+            },
+            {
+                id: 9,
+                category: "cardio",
+                type: "multiple",
+                question: "In Kawasaki disease, which medication must be administered within the first 10 days to prevent cardiac complications?",
+                options: [
+                    "Antibiotics",
+                    "IVIG (Intravenous Immunoglobulin)",
+                    "Corticosteroids",
+                    "Anticoagulants"
+                ],
+                correct: [1],
+                rationale: "IVIG must be given within the first 10 days to act as a cardiac protectant and prevent coronary artery aneurysms, which are the most serious complication of Kawasaki disease. High-dose aspirin is also given - this is the ONE exception where we give aspirin to children. Antibiotics don't treat Kawasaki's since it's not bacterial."
+            },
+            {
+                id: 10,
+                category: "cardio",
+                type: "select-all",
+                question: "Which are major criteria for diagnosing Kawasaki disease? (Select all that apply)",
+                options: [
+                    "Fever lasting at least 5 days",
+                    "Carditis",
+                    "Strawberry tongue",
+                    "Fever",
+                    "Rash"
+                ],
+                correct: [1, 2, 4],
+                rationale: "The major Jones criteria for Kawasaki's (not rheumatic fever) include: carditis, subcutaneous nodules, polyarthritis, rash (scarlet fever-like), and chorea. For diagnosis, you need HIGH fever (>101.3°F) unresponsive to antipyretics PLUS at least 4 major criteria. Strawberry tongue is one of the classic signs along with red eyes, swollen hands/feet, enlarged lymph nodes, and rash."
+            },
+            {
+                id: 11,
+                category: "cardio",
+                type: "multiple",
+                question: "A child with rheumatic heart disease should be assessed frequently for which complication?",
+                options: [
+                    "Renal failure",
+                    "Heart valve damage",
+                    "Respiratory failure",
+                    "Liver failure"
+                ],
+                correct: [1],
+                rationale: "Rheumatic heart disease occurs when strep throat/scarlet fever is NOT treated. The immune system attacks the heart valves, making them scarred and stiff (stenotic). This is why it's crucial to treat strep infections with antibiotics. The valves become damaged and may require surgical replacement later in life."
+            },
+            {
+                id: 12,
+                category: "cardio",
+                type: "multiple",
+                question: "Which type of congenital heart defect is characterized by 'increased pulmonary blood flow'?",
+                options: [
+                    "Tetralogy of Fallot",
+                    "Tricuspid atresia",
+                    "Ventricular septal defect (VSD)",
+                    "Pulmonary atresia"
+                ],
+                correct: [2],
+                rationale: "VSD is an 'increased pulmonary blood flow' disorder because blood flows from the left ventricle (high pressure) through the hole to the right ventricle (low pressure), then to the lungs - so too much blood goes to the lungs. These 'left-to-right shunts' typically do NOT cause cyanosis. Tetralogy of Fallot, tricuspid atresia, and pulmonary atresia are 'decreased flow' disorders that DO cause cyanosis."
+            },
+            {
+                id: 13,
+                category: "cardio",
+                type: "select-all",
+                question: "Which findings would indicate possible digoxin toxicity in a pediatric patient? (Select all that apply)",
+                options: [
+                    "Bradycardia",
+                    "Nausea and vomiting",
+                    "Dysrhythmias",
+                    "Hypertension",
+                    "Anorexia"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "Signs of digoxin toxicity include: bradycardia (slow heart rate), irregular rhythm/dysrhythmias, nausea, vomiting, and anorexia (loss of appetite). Hypertension is not a sign of digoxin toxicity. The antidote for digoxin toxicity is digoxin immune fab. Always check heart rate before giving digoxin and hold if below threshold."
+            },
+            {
+                id: 14,
+                category: "cardio",
+                type: "multiple",
+                question: "Transposition of the great vessels requires surgery within what timeframe?",
+                options: [
+                    "First week of life",
+                    "First 24 hours of life",
+                    "First month of life",
+                    "First year of life"
+                ],
+                correct: [1],
+                rationale: "Transposition of the great vessels is an EMERGENCY requiring surgery within the first 24 hours. The aorta and pulmonary artery are switched - the 'hoses are plugged into the wrong places.' Until surgery, the baby needs mixing of blood through a PDA or ASD to survive. Upper extremities will have LOW oxygen and lower extremities will have HIGH oxygen (opposite of normal)."
+            },
+            {
+                id: 15,
+                category: "cardio",
+                type: "multiple",
+                question: "Which assessment finding is MOST concerning in an infant with hypoplastic left heart syndrome (HLHS)?",
+                options: [
+                    "Pink and crying",
+                    "Ashen/gray color with difficulty breathing",
+                    "Mild tachycardia",
+                    "Good feeding"
+                ],
+                correct: [1],
+                rationale: "Ashen/gray color with difficulty breathing indicates the ductus arteriosus is closing, which is life-threatening in HLHS. The baby appears normal at birth until the ductus closes, then deteriorates rapidly. HLHS means the ENTIRE left side of the heart is underdeveloped - fatal within days unless treated with surgery or transplantation."
+            },
+            {
+                id: 16,
+                category: "cardio",
+                type: "select-all",
+                question: "Which are appropriate nursing interventions for a child in congestive heart failure? (Select all that apply)",
+                options: [
+                    "Daily weights",
+                    "Monitor intake and output",
+                    "High sodium diet",
+                    "Elevate head of bed",
+                    "Encourage vigorous activity"
+                ],
+                correct: [0, 1, 3],
+                rationale: "Daily weights are PRIORITY (fluid retention causes weight gain), strict I&O monitoring helps track fluid balance, and elevating the head of bed helps with breathing. A LOW sodium diet is needed (not high) to prevent fluid retention. Activity should be limited to decrease cardiac workload - rest is important for the heart to recover."
+            },
+            {
+                id: 17,
+                category: "cardio",
+                type: "multiple",
+                question: "A voiding cystourethrogram (VCUG) is ordered for a child with suspected vesicoureteral reflux. What should the nurse use instead of a Foley catheter?",
+                options: [
+                    "Suprapubic catheter",
+                    "Feeding tube",
+                    "Urinary straight catheter",
+                    "No catheter is needed"
+                ],
+                correct: [1],
+                rationale: "A feeding tube should be used instead of a Foley catheter because the dye flows in faster with a larger bore tube. During a VCUG, contrast dye is instilled into the bladder through a catheter, the bladder is filled, then pictures are taken while the child voids to see if urine flows backwards to the kidneys."
+            },
+            {
+                id: 18,
+                category: "cardio",
+                type: "multiple",
+                question: "What is the FIRST sign of improvement in a child with acute glomerulonephritis?",
+                options: [
+                    "Blood pressure decreases",
+                    "Urine output increases",
+                    "Edema decreases",
+                    "Proteinuria decreases"
+                ],
+                correct: [1],
+                rationale: "Increased urine output is the FIRST sign of improvement in glomerulonephritis. As the inflammation resolves, the kidneys begin to function better and produce more urine. This precedes improvements in blood pressure, edema, and proteinuria."
+            },
+            {
+                id: 19,
+                category: "cardio",
+                type: "select-all",
+                question: "Which findings would concern the nurse caring for an infant after cardiac catheterization? (Select all that apply)",
+                options: [
+                    "Coolness of the affected extremity",
+                    "Decreased pulse in affected extremity",
+                    "Increased heart rate",
+                    "Bleeding at catheter site",
+                    "Pink color of extremity"
+                ],
+                correct: [0, 1, 3],
+                rationale: "After cardiac catheterization, monitor for bleeding at the catheter site (PRIORITY), decreased pulse and coolness in the affected extremity (indicates possible arterial occlusion), and changes in vital signs. Pink color is normal and reassuring. Increased heart rate could indicate complications like bleeding or pain."
+            },
+            {
+                id: 20,
+                category: "cardio",
+                type: "multiple",
+                question: "Which type of shock occurs when infection causes blood vessel dilation and fluid leaks into tissues?",
+                options: [
+                    "Hypovolemic shock",
+                    "Cardiogenic shock",
+                    "Septic shock",
+                    "Neurogenic shock"
+                ],
+                correct: [2],
+                rationale: "Septic/distributive shock occurs when infection causes blood vessels to dilate and fluid leaks out (like hoses with holes). Hypovolemic shock is from blood/fluid loss (like running out of gas), cardiogenic shock is from heart damage (like a broken engine), and neurogenic shock is from spinal cord injury."
+            },
+            {
+                id: 21,
+                category: "cardio",
+                type: "multiple",
+                question: "Acyanotic heart defects are characterized by which shunt direction?",
+                options: [
+                    "Right-to-left shunt",
+                    "Left-to-right shunt",
+                    "Bidirectional shunt",
+                    "No shunt present"
+                ],
+                correct: [1],
+                rationale: "Acyanotic defects have left-to-right shunts because the LEFT side has MORE pressure. Oxygenated blood from the left side flows to the right side, then gets pumped to the lungs again (increased pulmonary blood flow). These do NOT cause cyanosis because oxygenated blood is being shunted. Right-to-left shunts (cyanotic defects) send deoxygenated blood to the body, causing blue color."
+            },
+            {
+                id: 22,
+                category: "cardio",
+                type: "select-all",
+                question: "Which are signs of shock in a pediatric patient? (Select all that apply)",
+                options: [
+                    "Confusion",
+                    "Tachycardia",
+                    "Warm, flushed skin",
+                    "Weak pulse",
+                    "No urine output"
+                ],
+                correct: [0, 1, 3, 4],
+                rationale: "Signs of shock include confusion (poor brain perfusion), tachycardia (compensatory), weak pulse, and no urine output (kidneys not being perfused). The skin is typically PALE and COLD (not warm and flushed) as blood is shunted away from the skin to vital organs. Sweating is also common."
+            },
+            {
+                id: 23,
+                category: "cardio",
+                type: "multiple",
+                question: "Before birth, approximately what percentage of blood bypasses the lungs?",
+                options: [
+                    "50%",
+                    "70%",
+                    "90%",
+                    "100%"
+                ],
+                correct: [2],
+                rationale: "90% of blood bypasses the lungs before birth because the placenta is the organ of respiration - the baby doesn't need to use their lungs yet. Blood flows through special openings: the foramen ovale (between atria) and ductus arteriosus (between pulmonary artery and aorta). These normally close after the first breath."
+            },
+            {
+                id: 24,
+                category: "cardio",
+                type: "multiple",
+                question: "A child with aortic stenosis should be monitored closely during exercise because of the risk for:",
+                options: [
+                    "Dehydration",
+                    "Sudden death",
+                    "Seizures",
+                    "Respiratory failure"
+                ],
+                correct: [1],
+                rationale: "Aortic stenosis can cause SUDDEN DEATH with exercise. The valve from the left ventricle to the aorta is narrow/stiff, and during exercise when the heart needs to pump more blood, it cannot do so adequately. This is very serious and exercise should be restricted."
+            },
+            {
+                id: 25,
+                category: "cardio",
+                type: "select-all",
+                question: "Which findings would indicate heart disease in a young child? (Select all that apply)",
+                options: [
+                    "Failure to thrive",
+                    "Clubbing of fingers",
+                    "Normal respiratory rate",
+                    "Dysmorphic features",
+                    "Barrel-shaped chest"
+                ],
+                correct: [0, 1, 3, 4],
+                rationale: "Signs of heart disease in children include: failure to thrive (poor growth from inadequate oxygenation), clubbing of fingers (from chronic low oxygen), dysmorphic features (many congenital heart defects are associated with genetic syndromes), and barrel-shaped chest (from cardiac enlargement). Tachypnea (FAST breathing) is expected, not normal respiratory rate."
+            },
+            {
+                id: 26,
+                category: "cardio",
+                type: "multiple",
+                question: "What is the characteristic murmur heard with a ventricular septal defect (VSD)?",
+                options: [
+                    "Soft, blowing murmur",
+                    "Loud, harsh murmur",
+                    "Absent heart sounds",
+                    "Muffled heart sounds"
+                ],
+                correct: [1],
+                rationale: "VSD causes a LOUD, HARSH murmur that can be heard at the left lower sternal border. This is because blood is forcefully flowing through the hole between the ventricles. Many small VSDs close spontaneously early in life. Large VSDs may require surgical closure."
+            },
+            {
+                id: 27,
+                category: "cardio",
+                type: "multiple",
+                question: "Blue hands and feet (acrocyanosis) in a 36-hour-old newborn is:",
+                options: [
+                    "Always abnormal and requires immediate intervention",
+                    "Normal in the first 24 hours only",
+                    "Abnormal after 24-48 hours and should be investigated",
+                    "Normal for the first month of life"
+                ],
+                correct: [2],
+                rationale: "Acrocyanosis (blue hands/feet) is normal in the first 24 hours of life but is ABNORMAL after 24-48 hours and should be investigated for possible cardiac defects. Central cyanosis (blue lips, tongue, trunk) is ALWAYS abnormal and requires immediate evaluation."
+            },
+
+            // GASTROINTESTINAL QUESTIONS (28-54)
+            {
+                id: 28,
+                category: "gi",
+                type: "multiple",
+                question: "A newborn with a cleft lip and palate is at increased risk for:",
+                options: [
+                    "Respiratory infections",
+                    "Aspiration and ear infections",
+                    "Kidney problems",
+                    "Heart defects"
+                ],
+                correct: [1],
+                rationale: "Babies with cleft lip/palate are at high risk for aspiration (food/liquid going into lungs) because they cannot create proper suction, and ear infections because the opening affects the Eustachian tube drainage. Special feeding positions (sitting baby upright) and specialty bottles (Dr. Brown's) help prevent these complications."
+            },
+            {
+                id: 29,
+                category: "gi",
+                type: "select-all",
+                question: "Which are appropriate post-operative interventions for a child who had cleft palate repair? (Select all that apply)",
+                options: [
+                    "Elbow restraints",
+                    "Encourage use of straws",
+                    "Provide analgesics",
+                    "Clean suture line with gloved hand",
+                    "Allow child to brush teeth normally"
+                ],
+                correct: [0, 2, 3],
+                rationale: "After cleft palate repair: use elbow restraints to prevent child from touching their mouth, provide pain medication, and clean the suture line gently with a gloved hand. Do NOT use straws (can damage repair), and do NOT allow normal tooth brushing (too abrasive). The goal is to protect the surgical site while it heals."
+            },
+            {
+                id: 30,
+                category: "gi",
+                type: "multiple",
+                question: "Celiac disease is definitively diagnosed by:",
+                options: [
+                    "Blood test for IgA antibodies",
+                    "Stool sample",
+                    "Endoscopy with tissue biopsy",
+                    "Abdominal X-ray"
+                ],
+                correct: [2],
+                rationale: "Endoscopy with tissue biopsy is the definitive diagnosis for celiac disease - it shows damaged villi (finger-like projections in small intestine). Total IgA blood test can suggest celiac disease but doesn't confirm it. IMPORTANT: Do NOT have the patient eliminate gluten BEFORE testing, or the test results will be falsely negative."
+            },
+            {
+                id: 31,
+                category: "gi",
+                type: "multiple",
+                question: "The definitive treatment for celiac disease is:",
+                options: [
+                    "Antibiotics",
+                    "Anti-inflammatory medications",
+                    "Gluten-free diet for life",
+                    "Enzyme supplements"
+                ],
+                correct: [2],
+                rationale: "A strict gluten-free diet for LIFE is the only treatment for celiac disease. Patients must avoid wheat, rye, and barley completely. A nutrition consult is essential. There are no medications that treat celiac disease - only dietary management works."
+            },
+            {
+                id: 32,
+                category: "gi",
+                type: "select-all",
+                question: "Which are classic signs of appendicitis in children? (Select all that apply)",
+                options: [
+                    "Pain that starts at umbilicus and moves to right lower quadrant",
+                    "High fever (>103°F)",
+                    "Lying with knees bent",
+                    "Rebound tenderness",
+                    "Diarrhea"
+                ],
+                correct: [0, 2, 3],
+                rationale: "Classic appendicitis: pain starts around belly button (periumbilical) then moves to right lower quadrant, child wants to lay with knees bent (decreases pain), and rebound tenderness (hurts MORE when you release pressure). Fever is typically LOW-grade, not high. Constipation is more common than diarrhea."
+            },
+            {
+                id: 33,
+                category: "gi",
+                type: "multiple",
+                question: "A child with appendicitis suddenly reports relief from pain. What should the nurse suspect?",
+                options: [
+                    "The appendicitis has resolved",
+                    "Pain medication is working",
+                    "The appendix has ruptured",
+                    "The child is feeling better"
+                ],
+                correct: [2],
+                rationale: "Sudden relief from pain in appendicitis = RUPTURE/PERFORATION! This is a medical emergency. When the appendix bursts, the pressure is released so pain temporarily decreases, but infection spreads throughout the abdomen (peritonitis). Ruptured appendix is treated with long-term antibiotics, NOT immediate surgery."
+            },
+            {
+                id: 34,
+                category: "gi",
+                type: "multiple",
+                question: "Treatment for NON-ruptured appendicitis includes:",
+                options: [
+                    "Antibiotics only",
+                    "Surgery (appendectomy)",
+                    "Observation and pain management",
+                    "Nothing, it will resolve on its own"
+                ],
+                correct: [1],
+                rationale: "Non-ruptured appendicitis is treated with surgery (appendectomy) to remove the inflamed appendix before it ruptures. After surgery, get the child walking as soon as possible to prevent small bowel obstruction. Keep NPO until bowels start working again."
+            },
+            {
+                id: 35,
+                category: "gi",
+                type: "multiple",
+                question: "A baby with gastroesophageal reflux should be positioned:",
+                options: [
+                    "Flat on back immediately after feeding",
+                    "Prone (on stomach) to prevent aspiration",
+                    "Upright during and after feedings",
+                    "On left side only"
+                ],
+                correct: [2],
+                rationale: "Keep the baby UPRIGHT during and after feedings to use gravity to keep stomach contents down. Also: small frequent feedings, frequent burping, thicken formula with rice cereal if needed, and give medications (Zantac, Reglan, PPIs) 30 minutes BEFORE the morning feed."
+            },
+            {
+                id: 36,
+                category: "gi",
+                type: "select-all",
+                question: "Which medications are used to treat gastroesophageal reflux? (Select all that apply)",
+                options: [
+                    "Ranitidine (Zantac)",
+                    "Metoclopramide (Reglan)",
+                    "Omeprazole (PPI)",
+                    "Antibiotics",
+                    "Antidiarrheals"
+                ],
+                correct: [0, 1, 2],
+                rationale: "GERD medications include: Zantac (reduces acid), Reglan (increases stomach emptying and strengthens lower esophageal sphincter), and PPIs like omeprazole (reduce acid production). Give 30 minutes BEFORE morning feeding. Antibiotics and antidiarrheals are not used for reflux."
+            },
+            {
+                id: 37,
+                category: "gi",
+                type: "multiple",
+                question: "The classic sign of pyloric stenosis is:",
+                options: [
+                    "Bilious vomiting",
+                    "Projectile vomiting",
+                    "Blood in vomit",
+                    "Occasional spitting up"
+                ],
+                correct: [1],
+                rationale: "PROJECTILE vomiting (shoots across the room!) is the classic sign of pyloric stenosis. The vomit contains milk with NO blood, bile, or mucus. The baby seems constantly hungry because the food isn't getting through. The 'olive sign' (hard enlarged pylorus that feels like an olive) confirms the diagnosis."
+            },
+            {
+                id: 38,
+                category: "gi",
+                type: "multiple",
+                question: "Post-operative feeding progression for an infant after pyloromyotomy should start with:",
+                options: [
+                    "Full-strength formula",
+                    "Breast milk",
+                    "Pedialyte",
+                    "Nothing by mouth for 48 hours"
+                ],
+                correct: [2],
+                rationale: "After pyloromyotomy (surgery for pyloric stenosis), start with Pedialyte and gradually increase. Once the baby tolerates clear liquids without vomiting, advance to formula or breast milk. Pre-operatively, the baby should be NPO with an NG tube to decompress the stomach, but can suck on a pacifier for comfort."
+            },
+            {
+                id: 39,
+                category: "gi",
+                type: "multiple",
+                question: "Volvulus is characterized by which type of vomiting?",
+                options: [
+                    "Non-bilious, projectile",
+                    "Bilious (green) vomiting",
+                    "Bloody vomiting",
+                    "Mucous vomiting"
+                ],
+                correct: [1],
+                rationale: "Volvulus causes bilious (green/yellow) vomiting because the intestine is twisted below the bile duct. This is a MEDICAL EMERGENCY - the twisted intestine cuts off blood supply → necrosis → gangrene → perforation. Signs include: constant intense pain, pulling up legs, belly distention, fast heart rate."
+            },
+            {
+                id: 40,
+                category: "gi",
+                type: "select-all",
+                question: "Which are appropriate interventions for a child with intussusception? (Select all that apply)",
+                options: [
+                    "NPO status",
+                    "NG tube for decompression",
+                    "Encourage oral fluids",
+                    "IV hydration",
+                    "Barium enema"
+                ],
+                correct: [0, 1, 3, 4],
+                rationale: "For intussusception: NPO (don't add pressure), NG tube for decompression, IV hydration, and barium enema (which can both diagnose AND treat by pushing the telescoped intestine back out). Do NOT encourage oral fluids. If barium enema doesn't work, surgery is needed."
+            },
+            {
+                id: 41,
+                category: "gi",
+                type: "multiple",
+                question: "What is the classic stool appearance in intussusception?",
+                options: [
+                    "Clay-colored stools",
+                    "Black tarry stools",
+                    "Red currant jelly stools",
+                    "Green watery stools"
+                ],
+                correct: [2],
+                rationale: "'Red currant jelly' stools (blood and mucus that looks like jelly) are classic for intussusception. This occurs because the intestinal lining is damaged when it telescopes into itself. The pain is INTERMITTENT (every 15-20 minutes when intestine contracts), unlike volvulus which has CONSTANT pain."
+            },
+            {
+                id: 42,
+                category: "gi",
+                type: "multiple",
+                question: "The BRAT diet (Bananas, Rice, Applesauce, Toast) is appropriate for:",
+                options: [
+                    "Initial treatment of dehydration",
+                    "Child recovering from gastroenteritis",
+                    "Prevention of gastroenteritis",
+                    "Celiac disease management"
+                ],
+                correct: [1],
+                rationale: "The BRAT diet is the THIRD step in treating gastroenteritis: (1) Pedialyte/water first, (2) then clear liquids (jello, popsicles, broth), (3) then BRAT diet. These bland foods are easy to digest. Do NOT give antidiarrheals or Pepto-Bismol (can cause drowsiness, more nausea, or ileus)."
+            },
+            {
+                id: 43,
+                category: "gi",
+                type: "select-all",
+                question: "Which are signs of severe dehydration requiring emergency care? (Select all that apply)",
+                options: [
+                    "No wet diapers for 8-12 hours",
+                    "Mild thirst",
+                    "Very lethargic/difficult to wake",
+                    "Sunken fontanel in infant",
+                    "Playing normally"
+                ],
+                correct: [0, 2, 3],
+                rationale: "EMERGENCY signs: no wet diapers for 8-12 hours (severe oliguria), very lethargic (altered mental status from poor brain perfusion), and sunken fontanel in infants. Also watch for: no tears, poor skin turgor, dark urine, dizziness. Mild thirst and normal play indicate mild dehydration that can be treated at home."
+            },
+            {
+                id: 44,
+                category: "gi",
+                type: "multiple",
+                question: "What is the FIRST sign that a newborn with Hirschsprung's disease is likely to exhibit?",
+                options: [
+                    "Vomiting",
+                    "Failure to pass meconium in first 24 hours",
+                    "Diarrhea",
+                    "Rectal bleeding"
+                ],
+                correct: [1],
+                rationale: "Failure to pass meconium in the first 24 hours with increasing abdominal distention is the first sign of Hirschsprung's disease. The baby is born without nerves in part of the colon, so that section can't contract to move stool → blockage. Other signs: chronic constipation from birth, thin child with big belly, ribbon-like or watery stools."
+            },
+            {
+                id: 45,
+                category: "gi",
+                type: "multiple",
+                question: "Hirschsprung's disease is definitively diagnosed by:",
+                options: [
+                    "Abdominal X-ray",
+                    "Rectal biopsy",
+                    "Blood test",
+                    "Stool culture"
+                ],
+                correct: [1],
+                rationale: "Rectal biopsy is the definitive diagnosis - it checks if nerve cells (ganglia) are present. No nerve cells = Hirschsprung's disease. Treatment is surgery to remove the section without nerves. Two options: (1) pull-through procedure (one surgery, no ostomy), or (2) two-step procedure with temporary ostomy."
+            },
+            {
+                id: 46,
+                category: "gi",
+                type: "select-all",
+                question: "Which nursing interventions are appropriate for omphalocele or gastroschisis? (Select all that apply)",
+                options: [
+                    "Cover defect with dry gauze",
+                    "Cover with non-adherent dressing soaked in sterile saline",
+                    "Keep infant NPO",
+                    "Place under warmer",
+                    "Feed normally to promote growth"
+                ],
+                correct: [1, 2, 3],
+                rationale: "Cover the defect immediately with non-adherent dressing soaked in sterile saline (prevents heat loss and keeps organs moist), keep NPO (feeding would enlarge stomach and increase vascular damage risk), and place under warmer (prevent hypothermia). Do NOT use dry gauze. C-section is preferred to prevent damage to organs/sac during delivery."
+            },
+            {
+                id: 47,
+                category: "gi",
+                type: "multiple",
+                question: "What is the key difference between omphalocele and gastroschisis?",
+                options: [
+                    "Location of defect",
+                    "Omphalocele has a sac, gastroschisis does not",
+                    "Gastroschisis is more serious",
+                    "They are the same condition"
+                ],
+                correct: [1],
+                rationale: "Omphalocele: organs are in a SAC (contains amniotic fluid, peritoneum, Wharton's jelly) outside the abdomen. Gastroschisis: opening on RIGHT side of umbilical cord with NO sac covering the intestines - they're just out. Both require immediate coverage and surgery."
+            },
+            {
+                id: 48,
+                category: "gi",
+                type: "multiple",
+                question: "Biliary atresia is characterized by:",
+                options: [
+                    "Enlarged liver with dark urine and light/white stools",
+                    "Small liver with normal stools",
+                    "Bloody diarrhea",
+                    "Projectile vomiting"
+                ],
+                correct: [0],
+                rationale: "Biliary atresia: bile ducts blocked/absent → bile can't drain → backs up into liver → jaundice, dark urine, light/gray/white stools (no bile reaching intestines), enlarged liver. There is NO CURE. Treatment is Kasai procedure (surgery) or liver transplant. Diagnosed with liver biopsy."
+            },
+            {
+                id: 49,
+                category: "gi",
+                type: "select-all",
+                question: "Post-operative care for a child with biliary atresia includes: (Select all that apply)",
+                options: [
+                    "High-protein, low-fat diet",
+                    "Fat-soluble vitamins (A, D, E, K)",
+                    "Measure abdominal girth daily",
+                    "High-fat diet",
+                    "Monitor for signs of liver failure"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "Post-Kasai procedure: high-protein LOW-fat diet (liver can't process fat well), fat-soluble vitamins A, D, E, K (needed because fat absorption is impaired), measure belly daily (check for ascites), and monitor for liver failure. If Kasai fails, liver transplant is needed."
+            },
+            {
+                id: 50,
+                category: "gi",
+                type: "multiple",
+                question: "Failure to thrive is defined as weight:",
+                options: [
+                    "Below 10th percentile",
+                    "Below 5th percentile on multiple occasions OR crossing two major percentile lines",
+                    "Below 50th percentile",
+                    "Any weight loss"
+                ],
+                correct: [1],
+                rationale: "Failure to thrive: weight less than 5th (or 3rd) percentile on multiple occasions OR weight that crosses TWO major percentile lines on growth chart (showing deceleration). Can be organic (vomiting, medical problems) or nonorganic (feeding issues, psychosocial problems)."
+            },
+            {
+                id: 51,
+                category: "gi",
+                type: "multiple",
+                question: "What should the nurse monitor MOST closely after an appendectomy?",
+                options: [
+                    "Temperature only",
+                    "Getting the child walking",
+                    "Limiting fluid intake",
+                    "Keeping child on bed rest"
+                ],
+                correct: [1],
+                rationale: "Get the child walking as soon as possible after appendectomy to prevent small bowel obstruction (a common complication). Also keep NPO until bowel sounds return and bowels start working again. Monitor the incision site for infection and provide pain management."
+            },
+            {
+                id: 52,
+                category: "gi",
+                type: "select-all",
+                question: "Which are signs of celiac disease? (Select all that apply)",
+                options: [
+                    "Abdominal bloating",
+                    "Foul-smelling, fatty stools",
+                    "Weight loss",
+                    "Constipation",
+                    "Delayed growth and development"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "Celiac disease signs: bloating, foul-smelling fatty stools (malabsorption), weight loss, delayed growth. DIARRHEA is more common than constipation. The damaged villi cannot absorb nutrients properly. Diagnosis requires endoscopy with biopsy BEFORE eliminating gluten from diet."
+            },
+            {
+                id: 53,
+                category: "gi",
+                type: "multiple",
+                question: "Constipation in children is typically treated with:",
+                options: [
+                    "Increased fruits, vegetables, fluids, and fiber",
+                    "Decreased fluid intake",
+                    "High-protein diet",
+                    "Bed rest"
+                ],
+                correct: [0],
+                rationale: "Treat constipation with: increased fruits and vegetables, increased fluids, and increased fiber (age in years + 5 = grams of fiber per day). Encourage regular toilet routine and physical activity. Fiber recommendation: child's age + 5 grams daily (e.g., 5-year-old needs 10 grams fiber)."
+            },
+            {
+                id: 54,
+                category: "gi",
+                type: "multiple",
+                question: "Which gastrointestinal emergency is characterized by INTERMITTENT severe abdominal pain in a toddler?",
+                options: [
+                    "Appendicitis",
+                    "Volvulus",
+                    "Intussusception",
+                    "Pyloric stenosis"
+                ],
+                correct: [2],
+                rationale: "Intussusception causes INTERMITTENT pain (every 15-20 minutes when intestine contracts). The intestine 'telescopes' into itself. Volvulus causes CONSTANT pain (intestine is twisted). Most common in children under 2-3 years old. Look for red currant jelly stools and a palpable mass."
+            },
+
+            // RENAL QUESTIONS (55-80)
+            {
+                id: 55,
+                category: "renal",
+                type: "multiple",
+                question: "Which finding in a urinalysis is MOST indicative of a urinary tract infection?",
+                options: [
+                    "Leukocyte esterase",
+                    "Nitrites",
+                    "Protein",
+                    "Blood"
+                ],
+                correct: [1],
+                rationale: "NITRITES are almost always diagnostic of a UTI. Bacteria convert nitrates in urine to nitrites. While leukocyte esterase can suggest infection, it's not as specific. Protein and blood can indicate other kidney problems. Urine culture confirms the specific bacteria and guides antibiotic choice."
+            },
+            {
+                id: 56,
+                category: "renal",
+                type: "select-all",
+                question: "Which are appropriate UTI prevention strategies for children? (Select all that apply)",
+                options: [
+                    "Wipe front to back",
+                    "Change diapers frequently",
+                    "Cotton underwear",
+                    "Bubble baths daily",
+                    "Regular bathing and hand hygiene"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "UTI prevention: wipe front to back (girls), change diapers frequently, cotton underwear (breathable), regular bathing, good hand hygiene. AVOID bubble baths (can irritate urethra). If sexually active, urinate after intercourse. Most UTIs in children are caused by E. coli from poor hygiene."
+            },
+            {
+                id: 57,
+                category: "renal",
+                type: "multiple",
+                question: "The ideal method for collecting urine for culture in a non-toilet-trained child is:",
+                options: [
+                    "Urine collection bag",
+                    "Sterile catheterization",
+                    "Clean-catch midstream",
+                    "Diaper squeeze"
+                ],
+                correct: [1],
+                rationale: "Sterile catheterization is the ideal method (gold standard) for urine culture in non-toilet-trained children to avoid contamination. Bags and diapers have high contamination rates. For toilet-trained children, clean-catch midstream is acceptable. NEVER squeeze a diaper."
+            },
+            {
+                id: 58,
+                category: "renal",
+                type: "multiple",
+                question: "Vesicoureteral reflux (VUR) increases the risk for:",
+                options: [
+                    "Diabetes",
+                    "UTIs and kidney scarring",
+                    "Heart disease",
+                    "Liver failure"
+                ],
+                correct: [1],
+                rationale: "VUR (urine flowing backwards from bladder to kidneys) increases risk for UTIs and kidney scarring, which can lead to end-stage renal disease. It's the most common congenital abnormality and most common finding in children with UTIs. Most cases resolve with time; some need surgery."
+            },
+            {
+                id: 59,
+                category: "renal",
+                type: "select-all",
+                question: "Which are expected findings in nephrotic syndrome? (Select all that apply)",
+                options: [
+                    "Massive proteinuria",
+                    "Hypoalbuminemia",
+                    "Hyperlipidemia",
+                    "Hyperalbuminemia",
+                    "Edema"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "Nephrotic syndrome triad: (1) MASSIVE proteinuria (lots of protein in urine), (2) HYPOalbuminemia (LOW albumin in blood), (3) HYPERlipidemia (HIGH cholesterol). Also has edema (from low albumin). The damaged glomerulus leaks protein. Urine looks foamy/frothy like beer."
+            },
+            {
+                id: 60,
+                category: "renal",
+                type: "multiple",
+                question: "The PRIORITY nursing intervention for a child with nephrotic syndrome is:",
+                options: [
+                    "Monitor blood pressure",
+                    "Daily weights",
+                    "Encourage fluids",
+                    "High-protein diet"
+                ],
+                correct: [1],
+                rationale: "DAILY WEIGHTS are the priority to monitor fluid retention (weight gain indicates worsening edema). Also monitor BP, strict I&O, give corticosteroids and diuretics, watch for complications (pulmonary embolism is most serious). Fluid restriction is needed, not encouragement. This is a long-term condition."
+            },
+            {
+                id: 61,
+                category: "renal",
+                type: "multiple",
+                question: "What color urine is characteristic of acute postinfectious glomerulonephritis?",
+                options: [
+                    "Clear",
+                    "Foamy/frothy",
+                    "Tea-colored",
+                    "Bright red"
+                ],
+                correct: [2],
+                rationale: "TEA-COLORED urine (from blood, but not painful urination) is classic for glomerulonephritis. This is INFLAMMATION (not damage) of the glomerulus, usually 10-14 days after strep infection. Also has mild proteinuria, high BP, edema, and decreased urine output. Usually resolves on its own."
+            },
+            {
+                id: 62,
+                category: "renal",
+                type: "select-all",
+                question: "Treatment for acute postinfectious glomerulonephritis includes: (Select all that apply)",
+                options: [
+                    "Antibiotics",
+                    "Diuretics",
+                    "Antihypertensives",
+                    "High sodium diet",
+                    "Fluid restriction"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "Treatment: antibiotics (for underlying strep infection), diuretics (remove excess fluid), antihypertensives (control BP), and LOW sodium diet with fluid restriction. Monitor BP, I&O, and daily weights. First sign of improvement is INCREASED urine output. Educate family to monitor BP and test urine at home."
+            },
+            {
+                id: 63,
+                category: "renal",
+                type: "multiple",
+                question: "Henoch-Schönlein Purpura is characterized by which type of rash?",
+                options: [
+                    "Blanching, flat rash",
+                    "Palpable purpura (raised, non-blanching)",
+                    "Vesicular rash",
+                    "Macular rash"
+                ],
+                correct: [1],
+                rationale: "Palpable purpura (raised, distinct, non-blanching rash) is the hallmark of HSP. This is a small vessel inflammation where IgA antibodies collect in vessels → vessels leak blood into skin, intestines, kidneys. Often follows respiratory infection. Self-limiting (4-6 weeks). Intussusception is a common complication!"
+            },
+            {
+                id: 64,
+                category: "renal",
+                type: "select-all",
+                question: "Which are clinical manifestations of Henoch-Schönlein Purpura? (Select all that apply)",
+                options: [
+                    "Palpable purpura on dependent areas",
+                    "Joint pain in lower extremities",
+                    "Edema of eyes and face",
+                    "GI bleeding",
+                    "High fever"
+                ],
+                correct: [0, 1, 2, 3],
+                rationale: "HSP tetrad: (1) rash (palpable purpura), (2) arthralgia/arthritis (joint pain, especially lower extremities), (3) abdominal pain with GI bleeding, (4) hematuria (kidney involvement). Also edema of eyes and face. Fever is NOT typically present. Watch for intussusception (common complication)."
+            },
+            {
+                id: 65,
+                category: "renal",
+                type: "multiple",
+                question: "The definitive test to confirm Henoch-Schönlein Purpura is:",
+                options: [
+                    "Urinalysis",
+                    "Renal biopsy showing IgA deposits",
+                    "Complete blood count",
+                    "Throat culture"
+                ],
+                correct: [1],
+                rationale: "Renal biopsy showing increased IgA deposits is the definitive diagnosis. Also get: CBC (may show anemia from bleeding vessels), ESR/CRP (elevated from inflammation), urinalysis (protein and blood), stool for occult blood, and ultrasound (rule out intussusception)."
+            },
+            {
+                id: 66,
+                category: "renal",
+                type: "select-all",
+                question: "Hemolytic uremic syndrome is characterized by which triad? (Select all that apply)",
+                options: [
+                    "Thrombocytopenia (low platelets)",
+                    "Microangiopathic hemolytic anemia",
+                    "Acute kidney injury",
+                    "Liver failure",
+                    "Heart failure"
+                ],
+                correct: [0, 1, 2],
+                rationale: "HUS triad: (1) thrombocytopenia (low platelets), (2) microangiopathic hemolytic anemia (RBC breakdown), (3) acute kidney injury. Usually follows E. coli infection from contaminated food/water. E. coli binds to kidneys → cell damage → premature breakdown of RBCs and platelets."
+            },
+            {
+                id: 67,
+                category: "renal",
+                type: "multiple",
+                question: "What is the most common cause of hemolytic uremic syndrome in children?",
+                options: [
+                    "Streptococcal infection",
+                    "Viral infection",
+                    "E. coli O157:H7 from contaminated food/water",
+                    "Staphylococcal infection"
+                ],
+                correct: [2],
+                rationale: "E. coli O157:H7 from contaminated food or water is the most common cause. The infection typically starts with bloody diarrhea 2-12 days after eating contaminated food. Prevention: clean water, properly cooked foods, good hygiene. Do NOT give antibiotics for diarrhea (releases toxins)."
+            },
+            {
+                id: 68,
+                category: "renal",
+                type: "select-all",
+                question: "Which medications should be AVOIDED in a child with hemolytic uremic syndrome? (Select all that apply)",
+                options: [
+                    "NSAIDs (ibuprofen, aspirin)",
+                    "Antibiotics for GI symptoms",
+                    "Acetaminophen",
+                    "Antihypertensives",
+                    "Antidiarrheals"
+                ],
+                correct: [0, 1, 4],
+                rationale: "AVOID: NSAIDs (patient already has low platelets - bleeding risk), antibiotics for GI issues (release more toxins), and antidiarrheals (trap toxins in gut). Acetaminophen is safe for pain/fever. Antihypertensives may be needed for high BP. Educate families about medication restrictions."
+            },
+            {
+                id: 69,
+                category: "renal",
+                type: "multiple",
+                question: "The most common cause of acute kidney injury in children is:",
+                options: [
+                    "Genetic disorders",
+                    "Poor blood flow to kidneys (often from dehydration)",
+                    "Kidney stones",
+                    "Urinary tract infections"
+                ],
+                correct: [1],
+                rationale: "Poor blood flow (prerenal cause), often from dehydration, is the most common cause of AKI in children. The kidneys can't filter blood properly without adequate perfusion. Other causes include intrinsic kidney damage and postrenal obstruction. AKI can usually be reversed if treated promptly."
+            },
+            {
+                id: 70,
+                category: "renal",
+                type: "select-all",
+                question: "Which are appropriate nursing interventions for acute kidney injury? (Select all that apply)",
+                options: [
+                    "Monitor strict intake and output",
+                    "Daily weights",
+                    "High-protein diet",
+                    "Fluid restriction",
+                    "Low sodium diet"
+                ],
+                correct: [0, 1, 3, 4],
+                rationale: "AKI management: strict I&O, daily weights (PRIORITY), fluid restriction (if overloaded), LOW sodium diet. Do NOT give high-protein diet (kidneys can't handle the waste products). May need dialysis if severe. Monitor electrolytes (especially potassium), BP, and for seizures."
+            },
+            {
+                id: 71,
+                category: "renal",
+                type: "multiple",
+                question: "Chronic kidney disease is classified in stages based on:",
+                options: [
+                    "Blood pressure readings",
+                    "Estimated glomerular filtration rate (eGFR)",
+                    "Urine output only",
+                    "Protein level"
+                ],
+                correct: [1],
+                rationale: "CKD is classified in stages 1-5 based on estimated glomerular filtration rate (eGFR). Stage 5 is most severe (end-stage renal disease). The kidneys can no longer maintain the body's chemical balance, and there is extensive irreversible damage to nephrons."
+            },
+            {
+                id: 72,
+                category: "renal",
+                type: "select-all",
+                question: "Which are signs of chronic kidney disease in children? (Select all that apply)",
+                options: [
+                    "Fatigue and loss of energy",
+                    "Delayed growth",
+                    "Increased urine output",
+                    "Pale skin",
+                    "Nausea and anorexia"
+                ],
+                correct: [0, 1, 3, 4],
+                rationale: "CKD signs: fatigue, delayed growth (kidneys produce erythropoietin and activate vitamin D), pale skin (anemia), nausea/anorexia. DECREASED urine output occurs (not increased), though there may be compensatory increase in fluid intake. Can progress to fluid overload, high BP, heart failure, seizures, coma."
+            },
+            {
+                id: 73,
+                category: "renal",
+                type: "multiple",
+                question: "What is the PRIORITY education topic for parents of a child with vesicoureteral reflux?",
+                options: [
+                    "Dietary modifications",
+                    "Preventing and recognizing UTIs",
+                    "Exercise restrictions",
+                    "Medication for pain"
+                ],
+                correct: [1],
+                rationale: "Preventing and recognizing UTIs is the priority because VUR increases UTI risk, which can lead to kidney scarring and end-stage renal disease. Educate about: good hygiene, recognizing UTI symptoms, medication compliance (may need prophylactic antibiotics), and that siblings are at risk (genetic component)."
+            },
+            {
+                id: 74,
+                category: "renal",
+                type: "multiple",
+                question: "Constipation should be treated aggressively in children with vesicoureteral reflux because:",
+                options: [
+                    "It causes abdominal pain",
+                    "The same muscles control urine and stool - constipation worsens reflux",
+                    "It prevents medication absorption",
+                    "It causes dehydration"
+                ],
+                correct: [1],
+                rationale: "The same pelvic floor muscles control both urination and defecation. When constipated, the full rectum presses on the bladder and interferes with complete bladder emptying, which worsens reflux and increases UTI risk. Aggressive constipation management is essential in VUR."
+            },
+            {
+                id: 75,
+                category: "renal",
+                type: "select-all",
+                question: "Which lab findings would you expect in a child with acute kidney injury? (Select all that apply)",
+                options: [
+                    "Elevated BUN",
+                    "Elevated creatinine",
+                    "Low potassium",
+                    "Metabolic acidosis",
+                    "Low BUN"
+                ],
+                correct: [0, 1, 3],
+                rationale: "In AKI: elevated BUN and creatinine (kidneys not filtering waste), metabolic acidosis (kidneys not excreting acid), and HIGH potassium (not low - hyperkalemia from impaired excretion). Also monitor for electrolyte imbalances, anemia, and perform EKG to check for cardiac effects of hyperkalemia."
+            },
+            {
+                id: 76,
+                category: "renal",
+                type: "multiple",
+                question: "When should urine be collected for culture in a child with suspected UTI?",
+                options: [
+                    "After starting antibiotics",
+                    "Anytime within the first week",
+                    "BEFORE starting antibiotics",
+                    "It doesn't matter when"
+                ],
+                correct: [2],
+                rationale: "Always collect urine for culture BEFORE starting antibiotics. Once antibiotics are started, the culture may be falsely negative even though infection is present. The culture identifies the specific bacteria and guides antibiotic choice. After culture, can start broad-spectrum antibiotics while waiting for results."
+            },
+            {
+                id: 77,
+                category: "renal",
+                type: "multiple",
+                question: "Which complication should the nurse monitor for most closely in nephrotic syndrome?",
+                options: [
+                    "Respiratory infection",
+                    "Pulmonary embolism",
+                    "Diabetes",
+                    "Liver failure"
+                ],
+                correct: [1],
+                rationale: "Pulmonary embolism is the most serious complication of nephrotic syndrome (after infection, which is the most common). The hypercoagulable state from protein loss and high cholesterol increases clotting risk. Watch for: sudden chest pain, difficulty breathing, rapid heart rate. Give oxygen and monitor closely."
+            },
+            {
+                id: 78,
+                category: "renal",
+                type: "select-all",
+                question: "Patient education for a child being discharged with nephrotic syndrome should include: (Select all that apply)",
+                options: [
+                    "How to check blood pressure at home",
+                    "How to test urine for protein at home",
+                    "Daily weights",
+                    "High-sodium diet",
+                    "Recognizing signs of pulmonary embolism"
+                ],
+                correct: [0, 1, 2, 4],
+                rationale: "Home education: BP monitoring (watch for hypertension), urine testing (monitor protein levels), daily weights (track fluid retention), fluid restriction, and recognizing PE symptoms (chest pain, SOB). Need LOW sodium diet (not high) to prevent fluid retention. This is a long-term condition requiring ongoing monitoring."
+            },
+            {
+                id: 79,
+                category: "renal",
+                type: "multiple",
+                question: "A child is diagnosed with acute postinfectious glomerulonephritis. Which recent infection would the nurse expect in the history?",
+                options: [
+                    "Urinary tract infection",
+                    "Streptococcal throat infection",
+                    "Viral gastroenteritis",
+                    "Fungal infection"
+                ],
+                correct: [1],
+                rationale: "APSGN typically occurs 10-14 days AFTER a streptococcal throat infection (or skin infection like impetigo). The antibodies formed against strep collect in the glomeruli → inflammation. This is why treating strep infections with antibiotics is important - prevents rheumatic fever AND glomerulonephritis."
+            },
+            {
+                id: 80,
+                category: "renal",
+                type: "select-all",
+                question: "Which interventions help prevent UTIs in hospitalized patients? (Select all that apply)",
+                options: [
+                    "Remove urinary catheters as soon as possible",
+                    "Keep catheters in place for convenience",
+                    "Hand hygiene before and after catheter care",
+                    "Maintain closed urinary drainage system",
+                    "Disconnect drainage bag frequently"
+                ],
+                correct: [0, 2, 3],
+                rationale: "UTI prevention in hospitals: remove catheters ASAP (catheter-associated UTIs are common), strict hand hygiene, maintain CLOSED drainage system (don't disconnect), keep drainage bag below bladder level. Leaving catheters in for convenience increases infection risk significantly."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let answeredQuestions = new Set();
+        let showingResults = false;
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        const shuffledQuestions = shuffleArray(questions);
+
+        function displayQuestion() {
+            const question = shuffledQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            const isAnswered = answeredQuestions.has(currentQuestion);
+            
+            let html = `
+                <div class="question-header">
+                    <span class="question-number">Question ${currentQuestion + 1} of ${shuffledQuestions.length}</span>
+                    <span class="category-badge category-${question.category}">
+                        ${question.category === 'cardio' ? 'Cardiovascular' : question.category === 'gi' ? 'Gastrointestinal' : 'Renal'}
+                    </span>
+                </div>
+                
+                <div class="question-type">
+                    ${question.type === 'select-all' ? '⚠️ SELECT ALL THAT APPLY' : '📝 Multiple Choice'}
+                </div>
+                
+                <div class="question-text">${question.question}</div>
+                
+                <ul class="options">
+            `;
+            
+            question.options.forEach((option, index) => {
+                const inputType = question.type === 'select-all' ? 'checkbox' : 'radio';
+                const isSelected = userAnswers[currentQuestion]?.includes(index);
+                const isCorrect = question.correct.includes(index);
+                
+                let optionClass = 'option';
+                if (isAnswered) {
+                    if (isSelected && isCorrect) {
+                        optionClass += ' correct';
+                    } else if (isSelected && !isCorrect) {
+                        optionClass += ' incorrect';
+                    } else if (!isSelected && isCorrect) {
+                        optionClass += ' correct-answer';
+                    }
+                } else if (isSelected) {
+                    optionClass += ' selected';
+                }
+                
+                html += `
+                    <li class="${optionClass}">
+                        <input type="${inputType}" 
+                               id="option${index}" 
+                               name="answer" 
+                               value="${index}"
+                               ${isSelected ? 'checked' : ''}
+                               ${isAnswered ? 'disabled' : ''}
+                               onchange="selectOption(${index})">
+                        <label for="option${index}">${option}</label>
+                    </li>
+                `;
+            });
+            
+            html += '</ul>';
+            
+            if (isAnswered) {
+                html += `
+                    <div class="rationale">
+                        <h3>📚 Rationale</h3>
+                        <p class="rationale-text">${question.rationale}</p>
+                    </div>
+                `;
+            }
+            
+            html += '<div class="buttons">';
+            
+            if (!isAnswered) {
+                const hasSelection = userAnswers[currentQuestion] && userAnswers[currentQuestion].length > 0;
+                html += `<button class="btn-primary" onclick="submitAnswer()" ${!hasSelection ? 'disabled' : ''}>Submit Answer</button>`;
+            }
+            
+            if (currentQuestion > 0) {
+                html += '<button class="btn-secondary" onclick="previousQuestion()">← Previous</button>';
+            }
+            
+            if (isAnswered && currentQuestion < shuffledQuestions.length - 1) {
+                html += '<button class="btn-primary" onclick="nextQuestion()">Next →</button>';
+            }
+            
+            if (isAnswered && currentQuestion === shuffledQuestions.length - 1) {
+                html += '<button class="btn-primary" onclick="showResults()">View Results 🎯</button>';
+            }
+            
+            html += '</div>';
+            
+            container.innerHTML = html;
+            updateProgressBar();
+        }
+
+        function selectOption(index) {
+            const question = shuffledQuestions[currentQuestion];
+            
+            if (!userAnswers[currentQuestion]) {
+                userAnswers[currentQuestion] = [];
+            }
+            
+            if (question.type === 'select-all') {
+                const idx = userAnswers[currentQuestion].indexOf(index);
+                if (idx > -1) {
+                    userAnswers[currentQuestion].splice(idx, 1);
+                } else {
+                    userAnswers[currentQuestion].push(index);
+                }
+            } else {
+                userAnswers[currentQuestion] = [index];
+            }
+            
+            displayQuestion();
+        }
+
+        function submitAnswer() {
+            answeredQuestions.add(currentQuestion);
+            displayQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < shuffledQuestions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / shuffledQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function calculateScore() {
+            let correct = 0;
+            let cardioCorrect = 0, cardioTotal = 0;
+            let giCorrect = 0, giTotal = 0;
+            let renalCorrect = 0, renalTotal = 0;
+            
+            shuffledQuestions.forEach((question, index) => {
+                if (answeredQuestions.has(index)) {
+                    const userAnswer = userAnswers[index] || [];
+                    const correctAnswer = question.correct;
+                    
+                    const isCorrect = userAnswer.length === correctAnswer.length && 
+                                    userAnswer.every(val => correctAnswer.includes(val));
+                    
+                    if (isCorrect) {
+                        correct++;
+                        if (question.category === 'cardio') cardioCorrect++;
+                        else if (question.category === 'gi') giCorrect++;
+                        else renalCorrect++;
+                    }
+                    
+                    if (question.category === 'cardio') cardioTotal++;
+                    else if (question.category === 'gi') giTotal++;
+                    else renalTotal++;
+                }
+            });
+            
+            return {
+                correct,
+                total: answeredQuestions.size,
+                percentage: answeredQuestions.size > 0 ? Math.round((correct / answeredQuestions.size) * 100) : 0,
+                cardio: { correct: cardioCorrect, total: cardioTotal },
+                gi: { correct: giCorrect, total: giTotal },
+                renal: { correct: renalCorrect, total: renalTotal }
+            };
+        }
+
+        function showResults() {
+            showingResults = true;
+            const score = calculateScore();
+            const container = document.getElementById('quizContainer');
+            
+            let scoreClass = 'score-poor';
+            let message = 'Keep studying!';
+            if (score.percentage >= 90) {
+                scoreClass = 'score-excellent';
+                message = 'Outstanding! 🌟';
+            } else if (score.percentage >= 80) {
+                scoreClass = 'score-good';
+                message = 'Great job! 👏';
+            } else if (score.percentage >= 70) {
+                scoreClass = 'score-fair';
+                message = 'Good effort! 📚';
+            }
+            
+            const missedQuestions = shuffledQuestions.filter((q, index) => {
+                if (!answeredQuestions.has(index)) return false;
+                const userAnswer = userAnswers[index] || [];
+                const correctAnswer = q.correct;
+                return !(userAnswer.length === correctAnswer.length && 
+                        userAnswer.every(val => correctAnswer.includes(val)));
+            });
+            
+            let html = `
+                <div class="results">
+                    <h2>Exam Complete! 🎉</h2>
+                    
+                    <div class="score-circle ${scoreClass}">
+                        <div>
+                            ${score.percentage}%
+                            <div class="score-label">${score.correct}/${score.total}</div>
+                        </div>
+                    </div>
+                    
+                    <h3>${message}</h3>
+                    
+                    <div class="breakdown">
+                        <h3 style="margin-bottom: 15px;">Score Breakdown by Category</h3>
+                        <div class="breakdown-item">
+                            <span><strong>Cardiovascular</strong></span>
+                            <span>${score.cardio.correct}/${score.cardio.total} (${score.cardio.total > 0 ? Math.round((score.cardio.correct/score.cardio.total)*100) : 0}%)</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span><strong>Gastrointestinal</strong></span>
+                            <span>${score.gi.correct}/${score.gi.total} (${score.gi.total > 0 ? Math.round((score.gi.correct/score.gi.total)*100) : 0}%)</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span><strong>Renal</strong></span>
+                            <span>${score.renal.correct}/${score.renal.total} (${score.renal.total > 0 ? Math.round((score.renal.correct/score.renal.total)*100) : 0}%)</span>
+                        </div>
+                    </div>
+            `;
+            
+            if (missedQuestions.length > 0) {
+                html += `
+                    <div class="missed-questions">
+                        <h3>Questions to Review (${missedQuestions.length})</h3>
+                `;
+                
+                missedQuestions.forEach(q => {
+                    const origIndex = shuffledQuestions.indexOf(q);
+                    html += `
+                        <div class="missed-item">
+                            <strong>Q${origIndex + 1}:</strong> ${q.question.substring(0, 100)}...
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+            }
+            
+            html += `
+                <div class="buttons">
+                    <button class="btn-primary" onclick="retakeQuiz()">Retake Entire Quiz 🔄</button>
+                    ${missedQuestions.length > 0 ? '<button class="btn-secondary" onclick="retakeMissed()">Retake Missed Questions Only ✏️</button>' : ''}
+                </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        function retakeQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            answeredQuestions = new Set();
+            showingResults = false;
+            displayQuestion();
+        }
+
+        function retakeMissed() {
+            const missedIndices = [];
+            shuffledQuestions.forEach((q, index) => {
+                if (!answeredQuestions.has(index)) return;
+                const userAnswer = userAnswers[index] || [];
+                const correctAnswer = q.correct;
+                const isCorrect = userAnswer.length === correctAnswer.length && 
+                                userAnswer.every(val => correctAnswer.includes(val));
+                if (!isCorrect) {
+                    missedIndices.push(index);
+                }
+            });
+            
+            // Filter shuffledQuestions to only missed ones
+            const missedQuestions = missedIndices.map(i => shuffledQuestions[i]);
+            
+            // Replace shuffledQuestions array
+            shuffledQuestions.length = 0;
+            shuffledQuestions.push(...missedQuestions);
+            
+            // Reset state
+            currentQuestion = 0;
+            userAnswers = [];
+            answeredQuestions = new Set();
+            showingResults = false;
+            
+            displayQuestion();
+        }
+
+        // Initialize quiz
+        displayQuestion();
+    </script>
+</body>
+</html>
